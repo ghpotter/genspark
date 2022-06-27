@@ -1,0 +1,34 @@
+AWS Summary - 6/27
+
+Cloud
+- Pay for what you need. Upgrade as needed
+- Servers across the world for regional access
+
+Shared Responsibility Model
+- Cloud provider takes care of some responsibility of security, and all the hardward.
+- Cloud dev takes care of other responsibilities.
+- These responsibilities are declared head of usage.
+- Backer creates custom image.
+
+Elastic IP can mask local failures and remove need for multiple urls in case of failure
+
+Main cloud usages
+- computing
+- storage
+- moving data from cloud
+
+AWS has servers partitioned about based on regions, availability zones, and edge locations.
+- Regions are the largest (ex: us-east-1, eu-west-2).
+- Availability Zones that are specific sites with regions
+- Edge locations are used for caching location specific data
+
+AWS tiers of customer support
+- Free (minimal, focused on billing and using FAQs)
+- Dev (one step up, may request personalized help)
+- Business (more hands on support, limited downtime guarantees)
+- Enterprise (individual agent asigned to account)
+
+Type of servers
+- Shared (share hardware with other VMs)
+- Solo (exclusive use of hardware)
+- Spot (bid for unused/extra space on hardware. Cheapest, least reliable)

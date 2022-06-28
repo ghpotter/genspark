@@ -1,0 +1,22 @@
+IAM - Identity and Access Management
+IAM is a whtielist of users with access to your AWS files. It can use Active Directory
+or other authenticators instead of mantaining a manual list. Users default to no
+access, which is called explict deny. Like *nix systems, work via a user acount is a
+best pratice instead of working via root. Billing is tied to the root account, but
+permission can be given to other users. AWS policies set permissions which can be assigned to
+groups or users. They can be created using the AWS tool or via a JSON file.
+
+AWS Networking Services
+VPCs are Virtual private clouds and similar to VPNs in that they don't allow default
+outside access. VPCs are within AWS and encompass Availability Zones, but Subnets
+within the VPN are created with AZs. If you wish to share resources or data between
+VPCs, then you'll need to pair them. PAired subnets use a low latency connection and
+must have different IP address ranges.
+
+Network Access Control List is the Subnets firewall. NACL allows both whitelists and
+blacklists to control access. The rules for NACL are sequential. Security groups apply
+to instances and allow only whitelists.
+
+Network Address Translation gateway allows private instances to access the internet,
+while outside services cannot access the private instances. Instances of NAT can be
+controlled by the user, while the NAT Gateway is controlled by the cloud provider.

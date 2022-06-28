@@ -1,0 +1,26 @@
+IAM - Identity and Access Management
+ - whitelist of users with access to your AWS
+ - can use Active Directory on top of
+ - Users must be given access after created (explict deny)
+ - better to create user than work via root
+ - When creating user, must assign password and at least one permission
+ - Billing is displayed per user
+ - Connecting to DBs via AWS uses roles not user strings
+ - AWS policy generator creates JSONs for group policies https://awspolicygen.s3.amazonaws.com/policygen.html
+ - progamatic keys\Access keys allow API calls instead of username/password
+
+
+Connecting to DBs via APIs
+ - normally use connection string
+
+
+AWS Networking Services
+ - VPC: Virtual private cloud
+ - AWS > VPC > Availability Zone > Subnet
+ - VPCs need to be paired to share resources
+ - Network ACL - access control list (firewall)
+ - NACL -> subnet, Security group -> instance
+ - NACL -> Black and white lists. SG -> White list only
+ - NACL rules are sequential
+ - NAT gateway allow private subnet to access internet
+ - NAT Instance managed by person. NAT Gateway managed by AWS (Or cloud provider)

@@ -10,7 +10,7 @@ Shared Responsibility Model
 - These responsibilities are declared head of usage.
 - Backer creates custom image.
 
-Elastic IP can mask local failures and remove need for multiple urls in case of failure
+Elastic IP public facing static IP address for EC2 instance.
 
 Main cloud usages
 - computing

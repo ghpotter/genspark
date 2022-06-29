@@ -1,0 +1,21 @@
+EC2 - Virtual Servers
+- To launch machine you need Amazon Machine Image (AMI)
+- Packer to build images or AWS has an EC2 image builder
+- Cost depends on configuration including hardware and software
+- Must pay for static IP otherwise IP changes upon restart
+- Vertical scaling is increasing power of server. Horizontal scaling is increasing the number of machines.
+- Reserved Instance (RI) pay less for always-on server (as opposed to the standard on-demand server)
+- Dedicated Host is when you rent a physical server from Amazon
+- Ways to log in. ECS Instance Connect (using web page), Session Manager (primary way: SSM Agent installed on server), SSH client (using key pairs), EC2 serial console (for trouble shooting)
+
+
+S3 (Simple Storage Service) - Cloud storage
+- Can host static websites
+- Global service
+- Object lock important for terraform
+- Up "all the time"
+- File size upto 5TB
+- 7 types of S3 buckets
+  - Standard S3 (hot, high $ and high speed) and S3 glacier (cold, low $ and low speed)
+  - Standard for frequent use, Glacier for infrequent use (archieved data)
+

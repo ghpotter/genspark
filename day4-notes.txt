@@ -1,0 +1,15 @@
+RDS - Cloud DB
+
+Many options on type of DB and cost structures (We stuck with using MySQL)
+
+Steps to creating a private DB and connecting it with a public instance:
+ - Create a custom VPC
+ - Create 2 subnets. One will be private for the DB, and one will be public for the instance
+ - Create 2 route tables. Again, one for private DB and one for public instance
+ - Create an Internet gateway for the public instance
+ - Create instance on EC2 in the public subnet
+ - Create DB in RDS in the private subnet
+ - Create Security group for the instance as a nested Security Group in the DB. The Security Group must allow a connection to the instance's private IP.
+
+Assigenment at end of class:
+- Add an application to the instance that connects to the private DB.

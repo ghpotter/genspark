@@ -2,14 +2,45 @@ RDS - Cloud DB
 
 Many options on type of DB and cost structures (We stuck with using MySQL)
 
+-- Instructor's directions --
 Steps to creating a private DB and connecting it with a public instance:
  - Create a custom VPC
+  - Options: VPC only, IPv4 CIDR manual input, IPv4 CIDR: 10.0.0.0/16 (allows IPs from 10.0.0.0 to 10.0.255.255) (lower number after / means more IPs. /32 = 1 IP, /1 is all IPs 0.0.0.0-127.255.255.255)
  - Create 2 subnets. One will be private for the DB, and one will be public for the instance
+  - Options: VPC ID: (select the just created VPC)
+   - Subnet 1 of 2: Subnet name: Public, Availability Zone: (pick one), IPv4 CIDR block: 10.0.0.0/24 (10.0.0.0-10.0.0.255)
+   - Subnet 1 of 2: Subnet name: Private, Availability Zone: (pick same one as above), IPv4 CIDR block: 10.0.1.0/24 (10.0.1.0-10.0.1.255)
  - Create 2 route tables. Again, one for private DB and one for public instance
  - Create an Internet gateway for the public instance
+  - Name tag: (pick a name)
+  - Select IGW, Actions -> Attach to VPC (select VPC created for this exercise)
  - Create instance on EC2 in the public subnet
+  - Name: (pick a name), Key pair: (select or make new), Network Settings: [EDIT], VPC: (select created VPC), Subnet: (select Public Subnet), Auto-assign public IP: Enable, Firewall: New security group, Allow SSH, HTTPs, and HTTP.
  - Create DB in RDS in the private subnet
+  - Engine options: MySQL, Templates: Free tier, Master password: (make one), Connectivity: Create new VPC, Subnet group: Create new DB Subnet Group, Public Access: No, VPC secuirty group: Create new, New VPC secuirty group name: (make one), Availability Zone: (select one)
  - Create Security group for the instance as a nested Security Group in the DB. The Security Group must allow a connection to the instance's private IP.
+
+
+
+--- Simplified directions for same thing ---
+ - Create DB in RDS in the private subnet
+  - Engine options: MySQL, Templates: Free tier, Master password: (make one), Connectivity: Create new VPC, Subnet group: Create new DB Subnet Group, Public Access: No, VPC secuirty group: Create new, New VPC secuirty group name: (make one), Availability Zone: (select one)
+ - Create instance on EC2 in the public subnet
+  - Name: (pick a name), Key pair: (select or make new), Network Settings: [EDIT], VPC: (select created VPC), Subnet: (select any subnet), Auto-assign public IP: Enable, Firewall: Create security group, Secuirty group 1: Type: SSH, Source type: Anywhere, Secuirty group 2: Type: HTTPs, Source type: Anywhere, Secuirty group 3: Type: HTTP, Source type: Anywhere.
+ - Modify RDS's security group: Edit Inbound rules
+  - Delete rule
+  - Add rule: Type: All Traffic, Source: Custom, [select instance's secuirty group] 
+
+- from Command line:
+ - type: ssh -i <key location> ec2-user@<instance ip>
+ - type: sudo su
+ - type: yum install mariadb -y
+ - type: mysql -h <database ip> -u admin -p
+ - type: <db's admin password>
+ - you should see a mysql connection prompt, which means you can connect to the rds db
+
+- test connection from local host via any method to check that db is not public
+
 
 Assigenment at end of class:
 - Add an application to the instance that connects to the private DB.

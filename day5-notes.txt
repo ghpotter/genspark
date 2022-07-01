@@ -1,0 +1,32 @@
+Day5: Create IAM role and attach IAM role to the EC2 instance, so that ec2 can assume
+the role and connect to the DB in the private subnet. This implementation will limit
+the usage of user name and password to connect to the database
+
+Notes:
+ - if a user is an application, the it is called a service account.
+
+Modify DB: (takes time so do first)
+ - Database authentication: Password and IAM database authentication
+ - Modify immediately
+ - Reboot database server
+
+Create IAM role:
+ - AWS service, Use case: EC2
+ - Add permissions: Create Policy
+   - Service: RDS IAM Authentication
+   - Actions: All RDS IAM Authentication Actions
+   - Resources: select Any in this account
+ - Role Name: <create name>
+
+Attach Role to EC2:
+ - Actions -> Security -> Modify IAM role
+ - Select role from menu
+
+From mysql:
+ - create user with AWS authentication: CREATE USER {dbusername} IDENTIFIED WITH AWSAuthenticationPlugin as 'RDS';
+
+ Generate an AWS authentication tocket to identify the IAM role
+ - Download ssl cert: wget https://s3.amazonaws.com/rds-downloads/rds-ca-2019-root.pem
+ - TOKEN="$(aws rds generate-db-auth-token --hostname {db or cluster endpoint} --port 3306 --username {db username} --region {db region})"
+ - use token as password in connection
+ - mysql -h {db} -u {dbuser} --password=$TOKEN --port=3306 --ssl-ca=rds-ca-2019-root.pem

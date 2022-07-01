@@ -44,3 +44,9 @@ Steps to creating a private DB and connecting it with a public instance:
 
 Assigenment at end of class:
 - Add an application to the instance that connects to the private DB.
+  - Copy all code from here https://www.geeksforgeeks.org/build-a-grocery-store-web-app-using-php-with-mysql/
+  - Change code connect.php to connect to your database
+  - In mysql, create database and table to match php from above
+  - Follow directions here to update RDS DB to use utf8 character Settings: https://dev.to/aws-builders/mysql-charset-255-unknown-to-the-client-in-mysql-and-aws-rds-36fi
+  - modify server immediately (takes time to modify)
+  - reboot server (takes time to reboot)

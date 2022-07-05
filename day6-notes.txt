@@ -1,0 +1,64 @@
+amazon-linux-extras install epel -y
+- Installs Amazon packages. For this were are focused on Cloudwatch Agent.
+- EPEL = Extra Packages for Enterprise Linux
+- 
+
+yum install stress -y (for stress testing)
+-
+
+
+Simple Notification Service (SNS)
+ - Regional Service
+ - create subscription after creating service
+ 
+ Cloudwatch - Monitoring service
+ - Select instance -> Select metric
+ - Configure Actions -> Set Alarm to service created in SNS
+ Theory:
+ - Moditors applications (logs) and resources (CPU, Memory, Storage, Network)
+ - Create Dashboards or Alarms
+ - Alarms can trigger SNS
+ - Namespace: Container (placeholder)
+ - Types of Alarm:
+  - OK: Metric is within threshold
+  - Alarm: Metric is outside threshold
+  - Inssufficent data: Not enough data from metric
+  - Pricing - Depends on usage, like other cloud services
+
+Adding Memory monitor to ec2:
+ - Create IAM role with Cloudwatch Agent access (CloudwatchFullAccess) and assign to instance (You can modify an existing role and add the CloudWatchFullAccess policy also)
+ - SSH into your instance
+ - Install Agent: yum install amazon-cloudwatch-agent -y
+ - Install collectD: yum install collectD -y (needed otherwise fetch-config throws an error)
+ - Run configure wizard:
+  - cd /opt/aws/amazon-cloudwatch-agent/bin
+  - ./amazon-cloudwatch-agent-config-wizard and answer questions
+  - OR use nano to write the following to config.JSON:
+
+{
+        "agent": {
+                "metrics_collection_interval": 60,
+                "run_as_user": "root"
+        },
+        "metrics": {
+                "metrics_collected": {
+                        "mem": {
+                                "measurement": [
+                                        "mem_used_percent"
+                                ],
+                                "metrics_collection_interval": 60
+                        }
+                },
+        }
+}
+ - this configuration polls the memory used as a percentage every 60 seconds
+ - Configure and start agent: ./amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:config.json
+ - Go to CloudWatch and create an Alarm, you should see a new namespace name CWAgent with the mem_used_percent metric in it.
+ 
+stress for memory (The standard EC2 instance has 1 GB memory so this should use half of that):
+ - stress --vm-bytes 500M -t 600 -m 1
+
+
+
+Lesson CI\CD Pipeline with Jenkins for week 3
+ 

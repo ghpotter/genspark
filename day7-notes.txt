@@ -1,0 +1,33 @@
+Docker - Platform as a Service (Paas)
+ - Containerization: Packages all dependancies together
+ - Runs everything isolated from other things on your (virtual) machine
+ - LxC -> Linux and Container
+ - X tier - X is number of system involves (e.g., 2-tier is webhost and db)
+ - Microservices: individual components that can be modified independent of each other. Monolithic is the other option where changing one thing requires updating the whole thing.
+ - Minimal performance overhead.
+ - Standard model: hardward-> OS -> Hyper-V -> VMs with OSs
+ - Docker model: hardward -> OS -> Docker -> Containers (no OS)
+ - No docker on Windows. Need some linux emulator
+ - Namespace (Na) & C groups (Ca) isolate processes. Native to linux, not Windows
+ - Namespaces: PID, net, mount, uts (seperate space for kernal), ipc, user
+ - VMs are more secure than Containers
+ - Containers are eaiser to roll out\update
+ - Kuberenetes (and docker slammer) manages and deploys Containers
+ - Archietechure: Docker client (command line) <-> Docker Host (serves out containers) <-> docker registery (base code location)
+ - Basic commands: Build, Pull, Run
+
+ Assignment:
+  - Write a simple dockerfile to create docker image with a static web page and needed components and run it in detached mode. Ensure you can exec into the container post execution
+
+
+Docker commands:
+docker build -t NAME .
+ - build Dockerfile (note: file must be named Dockerfile) in current directory and gives the image the name NAME
+docker run -d -p HOST-PORT:CONTAINER-PORT IMAGE-NAME
+ - -d is for detached and is optional
+docker ps
+ - shows containers running
+docker images
+ - shows all images
+docker stop IMAGE-ID
+ - stops an image

@@ -1,0 +1,102 @@
+Kuberenetes - container orchestration system 
+ - Docker Swarm can work on small scale to deploy docker images
+ - Openshift
+ - EKS, AKS, GKS (Elastic, Azuer, Google) Kubernetes Service. K8S is vanilla service
+ - labs.play-with-k8s.com -> free website to "play with kubernetes"
+ - Master services: API server, Controller Manager, Scheduler, etcd
+    - Kubernetes all made with API calls
+    - Kube context: contains Kube config files, contains cluster info and credinitials)
+    - Controller Manager: Replication controller, network controller, 
+    - Scheduler: Checks if node has resources before deploying
+    - etcd: "Heart of Kuberenets." Stores state of everything.
+ - Node services: Kubelet, Kube-Proxy
+    - Kubelet: Monitors and executes local nodes
+    - cAdvisor: node Monitor
+    - Kube-proxy: Defines how to connect to internet
+- Core concepts:
+    - pods (also containers)
+        - Each pod can control multiple pods, but it's not a good idea
+        - Recommened: 1 pod per container
+        - Maybe exception for container log
+    - controllers
+        - 
+    - services
+        - Abstraction layer. may act as a load balancer
+    - volume aka storage space
+        - Persistant Volume: 
+        - Persistat Volume Client: 
+    - config maps & sercrets:
+        - Dockerfiles are config maps (define image)
+        - secrets: private info such as log in info
+    - deployment
+        -
+    - stateful sets
+        - 
+
+Using EKS, or AKS or most services, they controll the primary node.
+
+Commands:
+copy from play-with-k8s.
+     kubeadmin init --apiserver-advertise-address $(hostname)
+        -Full installation
+        - 'pulls' images to all worker nodes
+        - 
+after installing on master, copy line of text to workers to add them to the network
+Kube-ctl: Manages Kubernetes cluster
+ - uses context file (in home/.kube/config)
+
+manifest files: is a container file
+get pods -A (Shows all services in deployment)
+kubectl get ns -A
+
+AWS - EKS:
+To configure kubectl in cloudshell
+
+Create directory
+mkdir -p $HOME/.local/bin
+cd $HOME/.local/bin
+Note: The installation directory is set to$HOME/.local/bin
+This is because the persistent storage that is maintained between sessions is $HOME in cloudshell.
+cd $HOME/.local/bin
+Download the latest release with the command:
+curl -LO https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
+Validate the binary (optional)
+Download the kubectl checksum file:
+curl -LO https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256
+Validate the kubectl binary against the checksum file:
+echo "$(cat kubectl.sha256) kubectl" | sha256sum --check
+If valid, the output is:
+kubectl: OK
+Apply execute permissions to the binary.
+chmod +x ./kubectl
+Set path
+PATH=$PATH:$HOME/.local/bin:$HOME/bin
+export PATH
+Configure kubectl with EKS API Server credential.
+aws eks --region update-kubeconfig --name srek8s
+Validate kubectl configuration to master node kubectl get nodes
+
+ - Primary needs roles: AmazonEKSClusterPolicy
+ - Secondary node permissions: mazonEC2ContainerRegistryReadonly, AmazonEKSWorkerNodePolicy, AmazonEKS_CNI_Policy
+
+kubectl get nodes - lists all nodes
+kubectl get ns  (or namespace isntead of ns)
+kubectl create ns NAME
+default namespace is kube-system
+
+daemon sets run with each node
+ - In example aws-node, kube-proxy are examples
+
+taint and toleration
+ - comes into acount when resources are limited
+
+kubectl edit deploy/DEPLOYMENT_NAME.yml
+kubectl apply -f DEPLOYMENT_NAME.yml -ns NAME
+kubectl apply -f DEPLOMENT_NAME.yml --record=true  [record allows for roleback]
+kubectl rollout status deploy/DEPLOMENT_NAME -ns NAME
+kubectl rollout history deploy/DEPLOMENT_NAME -ns NAME
+kubectl rollout undo DEPLOMENT -ns NAME --to-revision REVISION#
+
+Repo: https://github.com/devopshubproject/ckad-lab
+practice senarios
+

@@ -4,7 +4,9 @@ Week 2:
 1) Create 1 master and 2 node cluster on ec2 using Kubeadm and ensure all the nodes are ready and able to connect from local using kubectl
 2) Deploy a simple Python based application and ensure it scales up automatically. Make use of ConfigMap and Secretes also select pv as local storage
 
-Using this to set up kubeadimn: https://actsupport.com/kubernetes-on-aws-ec2/
+    Assignment steps: ( lines beginning with - are comments and not to be run)
+
+-Using this to set up kubeadimn: https://actsupport.com/kubernetes-on-aws-ec2/
 
 sudo su
 
@@ -54,9 +56,35 @@ export KUBECONFIG=/etc/kubernetes/kubelet.conf
 kubectl get nodes
 
 -All nodes were saying Not Ready.
--On AllNodes:
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
 
--All nodes should be ready now.
+-On Master:
 
-AT: The connection to the server localhost:8080 was refused - did you specify the right host or port?
+curl https://docs.projectcalico.org/manifests/calico-typha.yaml -o calico.yaml
+
+kubectl apply -f calico.yaml
+
+-Wait a minute. All nodes should be ready now.
+
+-Part2: Installing a python app
+- Following: https://kubernetes.io/blog/2019/07/23/get-started-with-kubernetes-using-python/
+
+- Ensure that python, pip, and flask are installed on all nodes
+- python should be in image
+- Install pip
+
+-exit out of sudo
+exit
+
+curl -O https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py --user
+
+- Install flask
+pip install flask
+
+- Next get files for docker deployment
+- Get files and folders from: https://github.com/JasonHaley/hello-python
+- Make sure that Dockerfile is in the same folder as main.py and requirements.txt
+- Build docker image
+docker build . -t hello-python
+
+docker run -d -p 5001:5000 hello-python

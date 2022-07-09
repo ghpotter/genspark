@@ -1,0 +1,62 @@
+Lab Day:
+
+Week 2: 
+1) Create 1 master and 2 node cluster on ec2 using Kubeadm and ensure all the nodes are ready and able to connect from local using kubectl
+2) Deploy a simple Python based application and ensure it scales up automatically. Make use of ConfigMap and Secretes also select pv as local storage
+
+Using this to set up kubeadimn: https://actsupport.com/kubernetes-on-aws-ec2/
+
+sudo su
+
+yum install docker -y
+
+systemctl enable docker && systemctl start docker
+
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=0
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kube*
+EOF
+
+cat <<EOF >  /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+
+sysctl --system
+
+setenforce 0
+
+yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+
+systemctl enable kubelet && systemctl start kubelet
+
+-MASTER:
+sudo kubeadm init --pod-network-cidr=192.168.0.0/16
+
+mkdir -p $HOME/.kube
+
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+-WORKERS:
+sudo su<kubeadm join command copies from master node>
+
+export KUBECONFIG=/etc/kubernetes/kubelet.conf
+
+-Check status on all machines:
+kubectl get nodes
+
+-All nodes were saying Not Ready.
+-On AllNodes:
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
+
+-All nodes should be ready now.
+
+AT: The connection to the server localhost:8080 was refused - did you specify the right host or port?

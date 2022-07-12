@@ -1,0 +1,77 @@
+SQL
+CREATE TABLE table_name (
+    column_name column_type optional_key_words,
+    column_name column_type optional_key_words,
+    etc
+);
+
+DESCRIBE TABLE - Returns schema
+
+DROP TABLE table_name - deletes table
+
+ALTER TABLE table_name ADD column_name column_type optional_key_words
+
+ALTER TABLE table_name DROP column_name
+
+INSERT INTO table_name VALUES (something matches the schema)
+
+UPDATE table_name SET column_name = value WHERE condition
+
+DELETE FROM table_name - Deletes all data in table
+
+DELETE FROM table_name WHERE condition
+
+SELECT column_name, column_name FROM table_name (ORDER BY column_name, column_name, etc, (DESC)) LIMIT number) - Show table values. Items in () are optional
+
+UNION - merge results from tables
+
+JOIN ON table_name1.column_name = table_name2.column_name
+ - Default is inner join, only results that match
+ - Left includes values from initial table
+ - Right includes values from table joined to initial table
+ - Outer includes all values
+ - Missing values from Left, Right, Outer are null
+
+-- comment
+
+Conditions =, <, >, <=, >=, <>, column_name IN(value list)
+
+Modify column name in results with 'as'
+
+
+Day 11:
+Create a ec2 instance and install mysql ensure the ports are open.
+Try to connect to the configured DB via workbench from local post that download some sample dummy data and  perform some basic cCURD operations
+
+Once done create a simple summary of implementing the above process via CICD pipeline
+
+ - Create EC2 Ubuntu Instance
+sudo apt install mysql-server
+mysql
+CREATE USER 'root'@'%' IDENTIFIED BY '<PASSWORD>';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+ - Connect remotely with user: root password: <PASSWORD>
+  - Create and use a database
+CREATE DATABASE database_name;
+USE database_name;
+
+ - Execute sql commands
+
+
+ ----Summary via CICD pipeline
+Create bash script to install mysql
+Write sql script to add permissions to root to allow outside access
+Write sql script on outside machine to execute sql commands
+
+
+SPRING BOOT
+Quick easy way to create java apps
+
+ - Generates starting code for Springboot
+https://start.spring.io/
+
+Spring Boot Lab
+    -Create a simple CRUD REST API that alows for retrieval, addition, updating, and deletion of data in a collection (using the spring boot annotations).
+    -Create a simple JUnit test on the RestController

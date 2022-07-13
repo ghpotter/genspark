@@ -1,0 +1,3 @@
+/day-12-lab/.terraform/
+/day-12-lab/.*
+/day-12-lab/terraform*

@@ -1,0 +1,17 @@
+node {
+    stage('OS Check') {
+        if (System.properties['os.name'].toLowerCase().contains('windows')) {
+            echo 'Windows'
+        } else if (System.properties['os.name'].toLowerCase().contains('mac')) {
+            echo 'MacOS'
+        } else if (System.properties['os.name'].toLowerCase().contains('ubuntu')) {
+            echo 'Ubuntu'
+        } else if (System.properties['os.name'].toLowerCase().contains('red')) {
+            echo 'Red Hat'
+        } else if (System.properties['os.name'].toLowerCase().contains('centos')) {
+                echo 'CentOS'
+        } else {
+            echo 'I cannot tell which OS this is.'
+        }
+    }
+}

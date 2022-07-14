@@ -12,9 +12,9 @@ module "ec2_instance" {
   subnet_id              = "subnet-e1ef54dd"
 }
 
-# Configure the AWS Provider
-provider "aws" {
-  region = "us-east-1"
-  access_key = ""
-  secret_key = ""
-}
+# Configure the AWS Provider (saved in another file)
+# provider "aws" {
+#   region = "us-east-1"
+#   access_key = ""
+#   secret_key = ""
+# }

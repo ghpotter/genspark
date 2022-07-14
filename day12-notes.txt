@@ -1,0 +1,40 @@
+Terraform
+
+Configuration Management
+ - Ancible
+ - chef
+ - puppet
+ - salt
+
+Infrastructure as a Code
+ - Terraform developed by Hashicorp
+ - Cloud formation or ARM templates
+
+Terraform is cloud independent
+ - therefore it can launch multiple cloud instances
+ - Can use to create EC2 machines
+ - Provisions resources
+ - file extention is .tf
+ - platform independent
+
+3 types of Terraform
+ - Open source
+ - Enterprise
+ - Cloud
+
+Core concepts:
+ - Variables
+ - Provider - plug-in per platform (AWS, Azure)
+ - Module - reusable component (no variables stored)
+ - State
+ - resources
+ - Data source
+ - Outputs
+ Lifecycle (also commands)
+ - init
+ - plan
+ - apply
+ - destory
+
+.tf file are declaritive
+ - they can be split up for readability

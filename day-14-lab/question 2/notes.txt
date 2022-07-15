@@ -1,0 +1,37 @@
+Question 2:
+Micro-service application deployment strategy Project: 
+
+Configure a Kubernetes cluster and containerise the simple sample application also introduce the service layer components(network)
+---------------------
+https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html
+
+Create IAM user with AdministratorAccess permission
+Get key and secret key for user
+
+Start EC2 instance
+-install kubectl 
+curl -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.22.6/2022-03-09/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+mkdir $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
+echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
+-check installation
+kubectl
+- install eksctl
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv /tmp/eksctl /usr/local/bin
+-check installation
+eksctl
+
+run 'aws config' with key and secret key for IAM user created above
+
+-create eks cluster
+eksctl create cluster --name <cluster name> --region <region-code>(default is set in aws config) --fargate
+**Takes 10+ minutes**
+
+-- Create Docker image:
+
+docker build -t $docker_username/<YOUR_PUBLIC_REPO_IMAGE_NAME>:<TAG>
+
+
+--When Finished
+eksctl delete cluster --name my-cluster --region region-code

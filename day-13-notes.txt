@@ -1,1 +1,19 @@
 CU/CD with Jenkins Pipeline
+
+
+Splunk not used as much
+
+Techs not covered
+
+ansible (https://www.ansible.com/)
+prometheus (https://prometheus.io/)
+grafana (https://grafana.com/)
+
+vector ops
+
+op genie ?
+
+
+deeper on CI/CD
+
+empty comment in GitHub

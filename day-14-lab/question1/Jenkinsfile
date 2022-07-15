@@ -1,0 +1,29 @@
+/*
+Question 1:
+CICD Application build and deployment Project: 
+
+Provisioning the CICD environment and creating a simple pipeline to build, test and deploy the simple sample application
+ */
+pipeline {
+    agent any 
+    stages {
+        stage('Build') { 
+            steps {
+                // build project
+                sh './mvnw clean package'
+            }
+        }
+        stage('Test') { 
+            steps {
+                //run tests
+                sh './mvn test'
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                // deploy server
+                sh './mvnw spring-boot:run'
+            }
+        }
+    }
+}

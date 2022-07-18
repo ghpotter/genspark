@@ -1,0 +1,23 @@
+pipeline {
+    agent { dockerfile true }
+    stages {
+        stage('Build') { 
+            steps {
+                // build project
+                sh './mvnw clean package'
+            }
+        }
+        stage('Test') { 
+            steps {
+                //run tests
+                sh './mvn test'
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                // deploy server
+                sh './mvnw spring-boot:run'
+            }
+        }
+    }
+}

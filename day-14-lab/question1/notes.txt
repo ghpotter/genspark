@@ -1,0 +1,4 @@
+Question 1:
+CICD Application build and deployment Project: 
+
+Provisioning the CICD environment and creating a simple pipeline to build, test and deploy the simple sample application

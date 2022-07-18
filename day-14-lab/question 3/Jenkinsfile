@@ -1,13 +1,19 @@
 pipeline {
-    agent { dockerfile true }
+    agent any
     stages {
-        stage('Build') { 
+        stage('terraform') {
+            steps {
+                sh './terraform apply'
+            }
+        }
+        stage('Build') {
+            agent { dockerfile true }
             steps {
                 // build project
                 sh './app/mvnw clean package'
             }
         }
-        stage('Test') { 
+        stage('Test') {
             steps {
                 //run tests
                 sh './app/mvn test'

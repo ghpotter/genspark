@@ -1,0 +1,30 @@
+SRE roles
+
+SLI - Indecies to judge performance by
+SLO - Objectives/goals to reach
+SLA - Agreements with customers about what your SLOs are
+
+Questiongs:
+1) Suppose you are the manager of a data center facility,
+  one day you face a network outage, what would you do in such
+  a scenario? Write systematically all procedures you will
+  follow to restore the network.​
+-
+
+2) Summary of key components of SRE
+-
+
+3) Summary of main functions of SRE
+-
+
+
+RTO - Recovery time Objective
+ - Max allowed time you're able to be down
+
+RPO - Recovery point objective
+ - Max about of data your allowed to lose
+ - Determines how often backups are taken
+
+PTO - Point time objective
+
+DRaaS - Disaster Recovery as a Service

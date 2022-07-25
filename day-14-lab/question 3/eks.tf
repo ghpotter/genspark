@@ -1,3 +1,12 @@
+# Configure the AWS Provider
+# saved in private file
+# provider "aws" {
+#   region = "REGION"
+#   access_key = "ACCESS_KEY"
+#   secret_key = "SECRET_KEY"
+# }
+
+
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   version         = "17.24.0"

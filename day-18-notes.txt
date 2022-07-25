@@ -1,0 +1,99 @@
+ITIL - Information Technology Infrastructure Library 
+Best practices
+framework to follow business
+general guidelines for end-to-end standards
+
+1 - ITIL
+Information Technology Infrastructure Library is a set of best practices practiced by most infrastructure service providers to deliver services to the customers to meet their business needs within desired cost and quality.
+
+2 - Service
+Service is a means of delivering value to customers by achieving customer's desired results while working within given constraints.
+
+3 - Service Level
+It is a measured and reported achievement against one or more Service Level Targets.
+
+4 - Service Level Agreement
+It is an agreement between service provider and customer. The SLA describes the IT Service, documents Service Level Targets and specifies the responsibilities of provider and customer.
+
+5 - Service Strategy
+Service Strategy helps to design, develop and implement service management as organizational capabilities and strategic assets as well. It enables a service provider to consistently outperform competitive alternatives over time, across business cycles, industry disruptions and changes in leadership.
+
+6 - Service Model
+Service Model is the high level description of the service and components required to deliver that service.
+
+7 - Service Portfolio
+Service Portfolio is the set of services provided by the service provider.
+
+8 - Service Catalogue
+Service Catalogue is the set of specific services being provided by service provider to a specific customer.
+
+9 - Customer Portfolio
+Customer Portfolio is used to record all customers of IT service provider.
+
+10 - Demand Management
+Demand Management is very important and critical process in service strategy. It helps to understand customer demand for services so that appropriate capacity can be provisioned to meet those demands.
+
+11 - Pattern of Business Activity
+PBA is an extremely important activity achieved by knowing customer how they operate and future requirement they might need.
+
+12 - Service Design
+Service Design provides a blueprint for the services. It not only includes designing of new service but also devises changes and improvements to existing ones.
+
+13 - Operational Level Agreement (OLA)
+OLA is an agreement between IT service provider and another part of same organization.
+
+14 - Service Level Report
+It gives an insight into a service provider’s ability to deliver the agreed service quality.
+
+15 - Service Level Requirements
+It is a document containing the requirements for a service from the client viewpoint, defining detailed service level targets.
+
+16 - Service Asset
+Service Assets are the resources and capabilities owned by the service provider enabling it to deliver service to the customer.
+
+17 - Configuration Item (CI)
+Configuration Item is subset of service assets and have direct impact on delivering services. All servers, networks, applications that have an impact on production are known as configuration item.
+
+18 - SACM
+Service Assets and Configuration Management (SACM) deals with maintaining up-to-date and verified database of all assets and CIs which are also made available to other service management processes.
+
+20 - Change
+Change refers to modifying the existing services.
+
+21 - Event
+Event is defined as detectable occurrence that has significance for the delivery of IT service. Events are created by Configuration Item (CI) or monitoring tools.
+
+22 - Incident
+Incident is defined as any disruption in IT service. Incident can be reported either through the Service Desk or through an interface from event management to incident management tools.
+
+23 - Service Request
+Service Request refers to demand by the users. These requests can be regarding small changes, changing the password, installing additional software application, requesting information etc.
+
+24 - Problem
+In ITIL, a Problem is defined as unknown cause of one or more incident.
+
+25 - Known Error
+Known Error is well identified problem with its cause and resolution. It is stored in Known Error Database (KEDB).
+
+
+
+Process management
+
+Change management
+ - commisioning or decommisioning or degradtion of servers
+ - every 'change' in dev code or IT code
+ - minimum disruption
+ - 1) Study adverse impact of change and how to manage the impact
+ - 2) Prevent unathorized changes
+ - 3) Record process
+ - 4) Post implementation report (PIR) what we did, what went wrong, what were the results
+
+CMDB
+ - configuration management database
+ - all information about hardware and software used in IT organization
+
+Tools for being on call
+Opsgenie
+Vector ops
+Pager duty
+ - Setup up on-call responsibility and various metrics within.

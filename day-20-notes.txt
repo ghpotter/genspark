@@ -1,0 +1,44 @@
+Dynatrace:
+APM (Application monitoring) monitoring
+ - Dynatrace, App Dynamics, Data Dpg, Inspect IT
+
+ capabilities
+  - Real user monitoring
+  - Mobile application
+  - Server side
+  - Network, process + host,
+  - CLoud & VMs
+  - Container
+  - Root cause analysis
+
+Each machine has a Dynatrace agent, that sends info to host
+Smartscope/Davis is the name of the AI that monitors the information from the agents
+
+Dynatrace has a couple of tokens
+ - Personal Access Token (PAT) For automation
+ - Tenant Token by used by one agent (an actual person)
+
+Lab:
+
+Question 1:
+Setup Dynatrace AWS Monitoring Integration
+ - AWS: Create EC2 instance
+ - Dyna: Go to Infrastructure > AWS
+ - Connect new instance
+ - Fill out information with keys from am IAM user
+
+Question 2:
+Install OneAgent On EC2 Instance
+ - Dyna: Deply Dynatrace
+ - Start Integration
+ - Select OS
+ - Create Paas token
+ - Follow steps (a few lines to copy&paste)
+
+Question 3:
+Launch an Ec2 Instance DynatraceOneAgent and python application
+ - Create python app and run on ec2 instance
+
+
+Question 4:
+ - Create app that uses database and examine logs in dynatrace

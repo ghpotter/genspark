@@ -1,0 +1,28 @@
+On AWS in billing,
+go to settings and add legacy reports, and have them dump to an S3 bucket
+
+Create EC2 instance (I used a t2.large with 16 GiB space)
+
+get splunk rpm on instance
+
+run: sudo rpm -i <splunk-file>
+
+move to /opt/splunk/bin
+run: ./splunk start
+
+get url and navigate to web
+
+In splunk add apps 'Splunk App for AWS' and 'Splunk Add-on for AWS'
+Restart splunk (either ./splunk restart from command line or Settings > Server Controls in GUI) 
+
+In Splunk Add-on > Configuration: Add user with correct permissions
+
+In Splunk Add-on > Inputs: [Create New Input]
+Add Metadata, and Custom data type > Generic S3
+
+Splunk can now search
+
+For S3 bucket data, use search: index=* buckets
+
+For budget data, use search: source="file name in S3 bucket" 
+(I did a search of source=* then looked for the file name)
